@@ -1,5 +1,7 @@
 # jquery-projector
 
+<div style="float: right"><a href="http://apostrophenow.org/"><img src="http://github.com/punkave/jquery-projector/logo-box-madefor.png" /></a></div>
+
 `jquery-projector` is a simple jQuery slideshow plugin. `jquery-projector` progressively enhances a list of items into a slideshow.
 
 Progressive enhancement makes `jquery-projector` very SEO-friendly. `jquery-projector` also copes intelligently with images of varying heights, imposing a consistent height on the slideshow so your page doesn't "jump." `jquery-projector` is tested and supported back to at least IE8.
@@ -74,6 +76,8 @@ The height of the slideshow is automatically fixed based on the image with the h
 slideshow auto-rotates. Note that this assumes you are using CSS to force a consistent width for all of the images and allowing the height to scale to maintain the aspect ratio.
 
 You can disable this behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height attribute on the outer element of your slideshow (no value is needed).
+
+<div style="float: right"><a href="http://punkave.com/"><img src="http://github.com/punkave/jquery-projector/logo-box-builtby.png" /></a></div>
 
 ## About P'unk Avenue and Apostrophe
 
