@@ -12,7 +12,7 @@ Progressive enhancement makes `jquery-projector` very SEO-friendly. `jquery-proj
 
 You need jQuery, of course. `jquery-projector` is actively supported with jQuery 1.9 and 2.0 but may work with older versions.
 
-You must also have the [jquery-image-ready](http://github.com/punkave/jquery-image-ready) plugin.
+You must also have the [jquery-images-ready](http://github.com/punkave/jquery-images-ready) plugin.
 
 ### Setting Up Your Markup
 
