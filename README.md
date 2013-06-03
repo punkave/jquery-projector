@@ -1,6 +1,6 @@
 # jquery-projector
 
-<div style="float: right"><a href="http://apostrophenow.org/"><img src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-madefor.png" /></a></div>
+<a href="http://apostrophenow.org/"><img src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-madefor.png" align="right" /></a>
 
 `jquery-projector` is a simple jQuery slideshow plugin. `jquery-projector` progressively enhances a list of items into a slideshow.
 
@@ -77,7 +77,7 @@ slideshow auto-rotates. Note that this assumes you are using CSS to force a cons
 
 You can disable this behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height attribute on the outer element of your slideshow (no value is needed).
 
-<div style="float: right"><a href="http://punkave.com/"><img src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-builtby.png" /></a></div>
+<a href="http://punkave.com/"><img align="right" src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-builtby.png" /></a>
 
 ## About P'unk Avenue and Apostrophe
 
