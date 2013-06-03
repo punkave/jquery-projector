@@ -77,8 +77,6 @@ slideshow auto-rotates. Note that this assumes you are using CSS to force a cons
 
 You can disable this behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height attribute on the outer element of your slideshow (no value is needed).
 
-<a href="http://punkave.com/"><img align="right" src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-builtby.png" /></a>
-
 ## About P'unk Avenue and Apostrophe
 
 `jquery-projector` was created at [P'unk Avenue](http://punkave.com) for use in Apostrophe, an open-source content management system built on node.js. If you like `jquery-projector` you should definitely [check out apostrophenow.org](http://apostrophenow.org). Also be sure to visit us on [github](http://github.com/punkave).
@@ -87,4 +85,6 @@ You can disable this behavior by setting the `noHeight` option to `true`, or by 
 
 Feel free to open issues on [github](http://github.com/punkave/jquery-projector).
 
+
+<a href="http://punkave.com/"><img src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-builtby.png" /></a>
 
