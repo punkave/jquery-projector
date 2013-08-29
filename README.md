@@ -72,10 +72,17 @@ You can also set the delay via a `data-delay` attribute on the outermost element
 
 ### Automatic Height
 
-The height of the slideshow is automatically fixed based on the image with the highest ratio of height to width. This prevents the rest of the page below the slideshow from "jumping" as the
-slideshow auto-rotates. Note that this assumes you are using CSS to force a consistent width for all of the images and allowing the height to scale to maintain the aspect ratio.
+The height of the slideshow is automatically fixed based on the tallest item in the slideshow. Note that the height of the tallest item can be affected by your CSS decisions. For instance, if you impose a `max-height` on the slideshow images, that will be respected.
 
-You can disable this behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height attribute on the outer element of your slideshow (no value is needed).
+This prevents the rest of the page below the slideshow from "jumping" as the slideshow auto-rotates.
+
+Note that this assumes you are using CSS to force a consistent width for all of the images and allowing the height to scale in order to maintain the aspect ratio, with the optional use of `max-height` as well.
+
+You can disable this autosizing behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height` attribute on the outer element of your slideshow (no value is needed).
+
+## Changelog
+
+0.2.0: simplified the automatic height calculations. We trust jQuery to tell us the heights of the slideshow items. One benefit is that you may have additional elements beyond images, such as credits and titles, in each `[data-slideshow-item]` element.
 
 ## About P'unk Avenue and Apostrophe
 
