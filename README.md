@@ -82,6 +82,8 @@ You can disable this autosizing behavior by setting the `noHeight` option to `tr
 
 ## Changelog
 
+0.2.2: added the ability to have pagers which reference a particular item in the slideshow. Also have added a demo for testing purposes.
+
 0.2.0, 0.2.1: simplified the automatic height calculations. We trust jQuery to tell us the heights of the slideshow items. One benefit is that you may have additional elements beyond images, such as credits and titles, in each `[data-slideshow-item]` element.
 
 ## About P'unk Avenue and Apostrophe
