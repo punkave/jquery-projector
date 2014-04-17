@@ -23,6 +23,7 @@
     var currentClass = options.currentClass || 'apos-current';
     var noHeight = options.noHeight || ($el.attr('data-no-height') !== undefined);
 
+
     var interval;
 
     function reset() {
@@ -41,6 +42,13 @@
     }
 
     reset();
+
+    $el.find('[data-pager]').click(function(){
+      var target = $(this).index();
+      var $current = getCurrent();
+      $current.removeClass(currentClass);
+      $el.find('[data-slideshow-item]').eq(target).addClass(currentClass);
+    })
 
     $el.find('[data-previous]').click(function() {
       previous();

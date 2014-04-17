@@ -1,0 +1,57 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Projector Demo</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Let's include our scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="js/jquery.images-ready.js"></script>
+  <script src="../jquery.projector.js"></script>
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="slideshow">
+      <a href="#" class="previous" data-previous>Previous</a>
+      <a href="#" class="next" data-next>Next</a>
+
+      <ul class="pagers">
+        <li data-pager>1</li>
+        <li data-pager>2</li>
+        <li data-pager>3</li>
+      </ul>
+      <ul class="slideshow-items" data-slideshow-items>
+        <li data-slideshow-item class="slideshow-item apos-current">
+          <div class="slideshow-item-html">
+            <p>You can have as much markup as you like.</p>
+          </div>
+          <img src="https://s3.amazonaws.com/ooomf-com-files/WyVMN1W6Tves4NUkaXwh_14.JPG" data-image data-next>
+        </li>
+        <li data-slideshow-item class="slideshow-item">
+          <img src="https://s3.amazonaws.com/ooomf-com-files/7erBZvZMQ2mmuFQ10vcA_IMGP4512.jpg" data-image data-next>
+        </li>
+        <li data-slideshow-item class="slideshow-item">
+          <img src="https://s3.amazonaws.com/ooomf-com-files/CzH9xIvBRDm72LNGdq5D__MG_9049.jpg" data-image data-next>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+
+  <script>
+    $('.slideshow').projector({ });
+
+  </script>
+
+
+</body>
+</html>

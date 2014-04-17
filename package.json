@@ -1,0 +1,9 @@
+{
+  "name": "jquery-projector",
+  "version": "0.2.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
