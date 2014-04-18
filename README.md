@@ -32,6 +32,23 @@ Need a simple slideshow? Start with markup like this. Your markup may vary quite
       </ul>
     </div>
 
+Looking for pagers instead of previous and next buttons? You can use the `[data-pager]` attribute like this and projector will add the appropirate click events and also toggle your `currentClass` on the pager item itself:
+
+    <div class="my-slideshow">
+      <a href="#" data-pager class="apos-current">1</a>
+      <a href="#" data-pager>2</a>
+      <ul data-slideshow-items>
+        <li data-slideshow-item class="apos-current">
+          <img src="/image1.jpg" data-image />
+        </li>
+        <li data-slideshow-item>
+          <img src="/image2.jpg" data-image />
+        </li>
+        <!-- ... Etc -->
+      </ul>
+    </div>
+
+
 ### Setting Up Your CSS
 
 Note the use of the `apos-current` class on the first list item. You must initially apply this class to the first item. *In your CSS, make sure list items in your slideshow are hidden unless they have this class.* Your CSS might look like this:

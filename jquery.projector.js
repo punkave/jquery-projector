@@ -48,6 +48,7 @@
       var $current = getCurrent();
       $current.removeClass(currentClass);
       $el.find('[data-slideshow-item]').eq(target).addClass(currentClass);
+      setPager(target);
     })
 
     $el.find('[data-previous]').click(function() {
@@ -73,6 +74,9 @@
       }
       $current.removeClass(currentClass);
       $prev.addClass(currentClass);
+
+      setPager($prev.index());
+
       // A fresh n seconds for the next auto rotate
       reset();
     }
@@ -90,8 +94,15 @@
       }
       $current.removeClass(currentClass);
       $next.addClass(currentClass);
+
+      setPager($next.index())
       // A fresh n seconds for the next auto rotate
       reset();
+    }
+
+    function setPager(target){
+      $el.find('[data-pager]').removeClass(currentClass);
+      $el.find('[data-pager]').eq(target).addClass(currentClass);
     }
 
     function adjustSize() {
