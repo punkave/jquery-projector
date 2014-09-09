@@ -18,52 +18,57 @@ You must also have the [jquery-images-ready](http://github.com/punkave/jquery-im
 
 Need a simple slideshow? Start with markup like this. Your markup may vary quite a bit as long as you have elements with all of the data attributes shown. (The `data-next` and `data-previous` links are optional.) The use of the `my-slideshow` class is just an example.
 
-    <div class="my-slideshow">
-      <a href="#" data-previous>Previous</a>
-      <a href="#" data-next>Next</a>
-      <ul data-slideshow-items>
-        <li data-slideshow-item class="apos-current">
-          <img src="/image1.jpg" data-image />
-        </li>
-        <li data-slideshow-item>
-          <img src="/image2.jpg" data-image />
-        </li>
-        <!-- ... Etc -->
-      </ul>
-    </div>
+```html
+<div class="my-slideshow">
+  <a href="#" data-previous>Previous</a>
+  <a href="#" data-next>Next</a>
+  <ul data-slideshow-items>
+    <li data-slideshow-item class="apos-current">
+      <img src="/image1.jpg" data-image />
+    </li>
+    <li data-slideshow-item>
+      <img src="/image2.jpg" data-image />
+    </li>
+    <!-- ... Etc -->
+  </ul>
+</div>
+```
 
 Looking for pagers instead of previous and next buttons? You can use the `[data-pager]` attribute like this and projector will add the appropirate click events and also toggle your `currentClass` on the pager item itself:
 
-    <div class="my-slideshow">
-      <a href="#" data-pager class="apos-current">1</a>
-      <a href="#" data-pager>2</a>
-      <ul data-slideshow-items>
-        <li data-slideshow-item class="apos-current">
-          <img src="/image1.jpg" data-image />
-        </li>
-        <li data-slideshow-item>
-          <img src="/image2.jpg" data-image />
-        </li>
-        <!-- ... Etc -->
-      </ul>
-    </div>
-
+```html
+<div class="my-slideshow">
+  <a href="#" data-pager class="apos-current">1</a>
+  <a href="#" data-pager>2</a>
+  <ul data-slideshow-items>
+    <li data-slideshow-item class="apos-current">
+      <img src="/image1.jpg" data-image />
+    </li>
+    <li data-slideshow-item>
+      <img src="/image2.jpg" data-image />
+    </li>
+    <!-- ... Etc -->
+  </ul>
+</div>
+```
 
 ### Setting Up Your CSS
 
-Note the use of the `apos-current` class on the first list item. You must initially apply this class to the first item. *In your CSS, make sure list items in your slideshow are hidden unless they have this class.* Your CSS might look like this:
+Note the use of the `apos-current` class (or the value of the `currentClass` option if you passed one in)  on the first list item. You must initially apply this class to the first item. *In your CSS, make sure list items in your slideshow are hidden unless they have this class.* Your CSS might look like this:
 
-    .my-slideshow li
-    {
-      display: none;
-      /* Display all images with the same width, let height scale */
-      width: 100%;
-    }
+```css
+.my-slideshow li
+{
+  display: none;
+  /* Display all images with the same width, let height scale */
+  width: 100%;
+}
 
-    .my-slideshow li.apos-current
-    {
-      display: block;
-    }
+.my-slideshow li.apos-current
+{
+  display: block;
+}
+```
 
 *If you don't like `apos-current`, you can change the name of this class via the `currentClass` option when calling `projector`.*
 
@@ -71,21 +76,39 @@ Note the use of the `apos-current` class on the first list item. You must initia
 
 Now just select your slideshow and call `projector`:
 
-    <script type="text/javascript">
-      $(function() {
-          $('.my-slideshow').projector();
-      });
-    </script>
+```javascript
+<script type="text/javascript">
+  $(function() {
+      $('.my-slideshow').projector();
+  });
+</script>
+```
 
 This will give you a slideshow with a default delay of 5 seconds between items.
 
-You can change the delay by setting the `delay` option, in milliseconds:
+#### With all of the options:
 
-    $('.my-slideshow').projector({ delay: 2000 });
+```javascript
+$('.my-slideshow').projector({
+  // the delay between each slideshow item specified in milliseconds.
+  // set this to 0 to turn off automatic slideshow advancing.
+  delay: 2000,
+  // the classname applied to the current slideshow item
+  currentClass: 'apos-current',
+  // turns off automatic height when set to `true` (see the Automatic Height section below).
+  // defaults to `false`.
+  noHeight: false
+});
+```
 
-*Set the delay to 0 to shut off automatic rotation entirely.*
+You can also set these options on the outermost element of the slideshow using data attributes:
+```html
+<div class="my-slideshow" data-delay="2000" data-no-height="true" data-current-class="my-current-class">
+  <!-- ... Etc -->
+</div>
+```
 
-You can also set the delay via a `data-delay` attribute on the outermost element of the slideshow.
+Note that if both data-attributes and javascript option are present, the data-attributes win.
 
 ### Automatic Height
 
@@ -98,6 +121,8 @@ Note that this assumes you are using CSS to force a consistent width for all of 
 You can disable this autosizing behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height` attribute on the outer element of your slideshow (no value is needed).
 
 ## Changelog
+
+0.2.3: added `data-current-class` data-attribute to set the `currentClass` option.
 
 0.2.2: allowed for multiple instances on the same selector and added the ability to have pagers which reference a particular item in the slideshow. Also have added a demo for testing purposes.
 

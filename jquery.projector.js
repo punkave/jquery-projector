@@ -21,9 +21,8 @@
       }
       delay = parseInt(delay, 10);
 
-      var currentClass = options.currentClass || 'apos-current';
-      var noHeight = options.noHeight || ($el.attr('data-no-height') !== undefined);
-
+      var currentClass = $el.attr('data-current-class') || options.currentClass || 'apos-current';
+      var noHeight = ($el.attr('data-no-height') !== undefined) || options.noHeight || false;
 
       var interval;
 
@@ -47,7 +46,7 @@
       $el.find('[data-pager]').click(function(){
         setPager($(this).index());
         return false;
-      })
+      });
 
       $el.find('[data-previous]').click(function() {
         previous();
@@ -101,7 +100,7 @@
         $current.removeClass(currentClass);
         $next.addClass(currentClass);
 
-        refreshPager($next.index())
+        refreshPager($next.index());
         // A fresh n seconds for the next auto rotate
         reset();
       }
@@ -130,5 +129,5 @@
 
       adjustSize();
     });
-  }
+  };
 })( jQuery );
