@@ -3,7 +3,7 @@
   "title": "Projector",
   "description": "Projector creates slideshows by progressively enhancing a list of items. Projector handles images of varying heights intelligently.",
   "keywords": ["slideshow", "progressive", "enhancement", "images", "apostrophe", "punkave"],
-  "version": "0.2.4",
+  "version": "0.2.5",
   "author": {
     "name": "P'unk Avenue",
     "url": "http://punkave.com/"

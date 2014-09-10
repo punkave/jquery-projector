@@ -24,8 +24,11 @@
       var currentClass = $el.attr('data-current-class') || options.currentClass || 'apos-current';
       var nextClass = $el.attr('data-next-class') || options.nextClass || 'apos-next';
       var previousClass = $el.attr('data-previous-class') || options.previousClass || 'apos-previous';
+      var otherClass = $el.attr('data-other-class') || options.otherClass || 'apos-other';
       var noHeight = ($el.attr('data-no-height') !== undefined) || options.noHeight || false;
       var noNextAndPreviousClasses = ($el.attr('data-no-next-and-previous-classes') !== undefined) || options.noNextAndPreviousClasses || false;
+
+      var slideshowLength = $el.find('[data-slideshow-item]').length;
 
       // extra checks in case false was passed to the data attribute
       if($el.attr('data-no-height') === 'false') {
@@ -125,7 +128,7 @@
       }
 
       function setSiblings($current, ignoreOld) {
-        if(noNextAndPreviousClasses) {
+        if(noNextAndPreviousClasses || slideshowLength < 2) {
           return;
         }
         if(!ignoreOld) {
@@ -139,12 +142,18 @@
         if(!$newNext.length) {
           $newNext = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:first');
         }
+        $newNext.addClass(nextClass);
+
+        if(slideshowLength == 2) {
+          $current.removeClass(otherClass);
+          $newNext.addClass(otherClass);
+          return;
+        }
+
         var $newPrevious = $current.prev();
         if(!$newPrevious.length) {
           $newPrevious = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:last');
         }
-
-        $newNext.addClass(nextClass);
         $newPrevious.addClass(previousClass);
       }
 

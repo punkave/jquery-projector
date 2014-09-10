@@ -86,6 +86,12 @@ Now just select your slideshow and call `projector`:
 
 This will give you a slideshow with a default delay of 5 seconds between items.
 
+### Curent, Next, Previous, and Other
+
+`jquery-projector` adds convenience classes to your slideshow to allow for transitions and visual changes. The active slide gets `currentClass`, which by default is `apos-current`. The element _before_ the current one gets the `previousClass` (default is `apos-previous`), and the element _after_ the current one gets `nextClass` (`apos-next`).
+
+In the event that your slideshow has only _two_ `data-slideshow-items` in it, a third modifier class appears: `apos-other` (or whatever value you give `otherClass`). The item that is not currently active gets `apos-next` and `apos-other`, giving you the option to use your default `apos-next` style (if you have one) or override it by styling `apos-other`. This is useful if you are writing, for example, a horizontal sliding transition (which doesn't work as well with only two slides).
+
 #### With all of the options:
 
 ```javascript
@@ -99,6 +105,9 @@ $('.my-slideshow').projector({
   previousClass: 'apos-previous',
   // the classname applied to the item after the current item
   nextClass: 'apos-next',
+  // the classname applied to the other item when the
+  // slideshow is of length 2
+  otherClass: 'apos-other',
   // turns off automatic height when set to `true` (see the Automatic Height section below).
   // defaults to `false`.
   noHeight: false,
@@ -128,6 +137,8 @@ Note that this assumes you are using CSS to force a consistent width for all of 
 You can disable this autosizing behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height` attribute on the outer element of your slideshow (no value is needed).
 
 ## Changelog
+
+0.2.5: added `otherClass` (`apos-other` by default) for slideshows of length 2.
 
 0.2.4: added next and previous classes around the `currentClass` as a hook for CSS transitions. Use these to create sliding and fading animations. Added the options `nextClass` and `previousClass` to configure classnames, as well as `data-next-class` and `data-previous-class` data-attributes. Added the `noNextAndPreviousClasses` option in the event that this feature should be turned off. Updated some demo styles.
 
