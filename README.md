@@ -119,7 +119,7 @@ $('.my-slideshow').projector({
 
 You can also set these options on the outermost element of the slideshow using data attributes:
 ```html
-<div class="my-slideshow" data-delay="2000" data-no-height="true" data-current-class="my-current-class" data-next-class="my-next-class" data-previous-class="my-previous-class" data-no-next-and-previous-classes="false">
+<div class="my-slideshow" data-delay="2000" data-no-height="true" data-current-class="my-current-class" data-next-class="my-next-class" data-previous-class="my-previous-class" data-other-class="my-other-class" data-no-next-and-previous-classes="false">
   <!-- ... Etc -->
 </div>
 ```
