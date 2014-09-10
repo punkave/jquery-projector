@@ -95,15 +95,22 @@ $('.my-slideshow').projector({
   delay: 2000,
   // the classname applied to the current slideshow item
   currentClass: 'apos-current',
+  // the classname applied to the item before the current item
+  previousClass: 'apos-previous',
+  // the classname applied to the item after the current item
+  nextClass: 'apos-next',
   // turns off automatic height when set to `true` (see the Automatic Height section below).
   // defaults to `false`.
-  noHeight: false
+  noHeight: false,
+  // turns off the next and previous classes, leaving only `apos-current`.
+  // defaults to `false`.
+  noNextAndPreviousClasses: false
 });
 ```
 
 You can also set these options on the outermost element of the slideshow using data attributes:
 ```html
-<div class="my-slideshow" data-delay="2000" data-no-height="true" data-current-class="my-current-class">
+<div class="my-slideshow" data-delay="2000" data-no-height="true" data-current-class="my-current-class" data-next-class="my-next-class" data-previous-class="my-previous-class" data-no-next-and-previous-classes="false">
   <!-- ... Etc -->
 </div>
 ```
@@ -121,6 +128,8 @@ Note that this assumes you are using CSS to force a consistent width for all of 
 You can disable this autosizing behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height` attribute on the outer element of your slideshow (no value is needed).
 
 ## Changelog
+
+0.2.4: added next and previous classes around the `currentClass` as a hook for CSS transitions. Use these to create sliding and fading animations. Added the options `nextClass` and `previousClass` to configure classnames, as well as `data-next-class` and `data-previous-class` data-attributes. Added the `noNextAndPreviousClasses` option in the event that this feature should be turned off. Updated some demo styles.
 
 0.2.3: added `data-current-class` data-attribute to set the `currentClass` option.
 

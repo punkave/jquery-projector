@@ -22,7 +22,18 @@
       delay = parseInt(delay, 10);
 
       var currentClass = $el.attr('data-current-class') || options.currentClass || 'apos-current';
+      var nextClass = $el.attr('data-next-class') || options.nextClass || 'apos-next';
+      var previousClass = $el.attr('data-previous-class') || options.previousClass || 'apos-previous';
       var noHeight = ($el.attr('data-no-height') !== undefined) || options.noHeight || false;
+      var noNextAndPreviousClasses = ($el.attr('data-no-next-and-previous-classes') !== undefined) || options.noNextAndPreviousClasses || false;
+
+      // extra checks in case false was passed to the data attribute
+      if($el.attr('data-no-height') === 'false') {
+        noHeight = false;
+      }
+      if($el.attr('data-no-next-and-previous-classes') === 'false') {
+        noNextAndPreviousClasses = false;
+      }
 
       var interval;
 
@@ -58,10 +69,14 @@
         return false;
       });
 
+
+      initializeSiblings();
+
       function setPager(target) {
         var $current = getCurrent();
         $current.removeClass(currentClass);
         $el.find('[data-slideshow-item]').eq(target).addClass(currentClass);
+        setSiblings( getCurrent() );
         refreshPager(target);
         reset();
       }
@@ -79,6 +94,8 @@
         }
         $current.removeClass(currentClass);
         $prev.addClass(currentClass);
+
+        setSiblings($prev);
 
         refreshPager($prev.index());
 
@@ -100,9 +117,39 @@
         $current.removeClass(currentClass);
         $next.addClass(currentClass);
 
+        setSiblings($next);
+
         refreshPager($next.index());
         // A fresh n seconds for the next auto rotate
         reset();
+      }
+
+      function setSiblings($current, ignoreOld) {
+        if(noNextAndPreviousClasses) {
+          return;
+        }
+        if(!ignoreOld) {
+          var $oldNext = $el.find('[data-slideshow-item].' + nextClass);
+          var $oldPrevious = $el.find('[data-slideshow-item].' + previousClass);
+          $oldNext.removeClass(nextClass);
+          $oldPrevious.removeClass(previousClass);
+        }
+
+        var $newNext = $current.next();
+        if(!$newNext.length) {
+          $newNext = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:first');
+        }
+        var $newPrevious = $current.prev();
+        if(!$newPrevious.length) {
+          $newPrevious = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:last');
+        }
+
+        $newNext.addClass(nextClass);
+        $newPrevious.addClass(previousClass);
+      }
+
+      function initializeSiblings() {
+        setSiblings( getCurrent() , true);
       }
 
       function refreshPager(target) {

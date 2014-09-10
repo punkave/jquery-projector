@@ -4,6 +4,14 @@
 
 @import url(http://fonts.googleapis.com/css?family=Inconsolata);
 
+*
+{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+
 body
 {
   font-family: "Inconsolata", mono;
@@ -29,14 +37,28 @@ body
   top: 0;
   left: 0;
   list-style: none;
-  transition: opacity .3s ease-in-out;
-  -webkit-transition: opacity .3s ease-in-out;
-  -moz-transition: opacity .3s ease-in-out;
-  -ms-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out, transform 0.3s ease-in-out;
+  -webkit-transition: opacity .3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  -moz-transition: opacity .3s ease-in-out, -moz-transform 0.3s ease-in-out;
+  -ms-transition: opacity .3s ease-in-out, -ms-transform 0.3s ease-in-out;
 
   &.apos-current
   {
     opacity: 1;
+  }
+
+  &.apos-next
+  {
+    transform: translate3d(100%, 0, 0);
+    // something a little wackier
+    // transform: scale(0.9) translate3d(10%, 0, 0) rotate(10deg);
+  }
+
+  &.apos-previous
+  {
+    transform: translate3d(-100%, 0, 0);
+    // something a little wackier
+    // transform: scale(0.9) translate3d(-10%, 0, 0) rotate(-10deg);
   }
 
   .slideshow-item-html
@@ -59,13 +81,18 @@ body
 .next
 {
   position: relative;
-  width: 47.6%;
+  width: 49%;
   display: inline-block;
   padding: 5px 1%;
   color: #222;
   text-align: center;
   text-decoration: none;
   background: #ccc;
+}
+
+.previous
+{
+  margin-right: 2%;
 }
 
 .pagers
@@ -75,13 +102,19 @@ body
   {
     list-style: none;
     position: relative;
-    width: 30.8%;
+    width: 32%;
+    margin-right: 2%;
     display: inline-block;
     padding: 5px 1%;
     cursor: pointer;
     color: #222;
     text-align: center;
     background: #ccc;
+
+    &:last-child
+    {
+      margin-right: 0;
+    }
 
     &.apos-current
     {
