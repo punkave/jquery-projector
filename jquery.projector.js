@@ -1,6 +1,6 @@
 // projector: a simple jQuery slideshow plugin
 //
-// Copyright 2013 P'unk Avenue LLC
+// Copyright 2014 P'unk Avenue LLC
 //
 // Complete docs here: http://github.com/punkave/jquery-projector
 
@@ -8,6 +8,8 @@
   $.fn.projector = function(options) {
     this.each(function(i, el) {
       var $el = $(this);
+      // grab only the FIRST instance of data-slideshow-items.
+      var $items = $el.find('[data-slideshow-items]').eq(0);
       if (!options) {
         options = {};
       }
@@ -28,7 +30,7 @@
       var noHeight = ($el.attr('data-no-height') !== undefined) || options.noHeight || false;
       var noNextAndPreviousClasses = ($el.attr('data-no-next-and-previous-classes') !== undefined) || options.noNextAndPreviousClasses || false;
 
-      var slideshowLength = $el.find('[data-slideshow-item]').length;
+      var slideshowLength = findItems().length;
 
       // extra checks in case false was passed to the data attribute
       if($el.attr('data-no-height') === 'false') {
@@ -57,17 +59,17 @@
 
       reset();
 
-      $el.find('[data-pager]').click(function(){
+      findSafe($el, '[data-pager]', '[data-slideshow-items]').click(function(){
         setPager($(this).index());
         return false;
       });
 
-      $el.find('[data-previous]').click(function() {
+      findSafe($el, '[data-previous]', '[data-slideshow-items]').click(function() {
         previous();
         return false;
       });
 
-      $el.find('[data-next]').click(function() {
+      findSafe($el, '[data-next]', '[data-slideshow-items]').click(function() {
         next();
         return false;
       });
@@ -78,14 +80,14 @@
       function setPager(target) {
         var $current = getCurrent();
         $current.removeClass(currentClass);
-        $el.find('[data-slideshow-item]').eq(target).addClass(currentClass);
+        findItems().eq(target).addClass(currentClass);
         setSiblings( getCurrent() );
         refreshPager(target);
         reset();
       }
 
       function getCurrent() {
-        var $current = $el.find('[data-slideshow-item].' + currentClass);
+        var $current = findSafe($items, '[data-slideshow-item].' + currentClass, '[data-slideshow-items]');
         return $current;
       }
 
@@ -93,7 +95,7 @@
         var $current = getCurrent();
         var $prev = $current.prev();
         if (!$prev.length) {
-          $prev = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:last');
+          $prev = findItems().last();
         }
         $current.removeClass(currentClass);
         $prev.addClass(currentClass);
@@ -115,7 +117,7 @@
         }
         var $next = $current.next();
         if (!$next.length) {
-          $next = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:first');
+          $next = findItems().first();
         }
         $current.removeClass(currentClass);
         $next.addClass(currentClass);
@@ -132,19 +134,19 @@
           return;
         }
         if(!ignoreOld) {
-          var $oldNext = $el.find('[data-slideshow-item].' + nextClass);
-          var $oldPrevious = $el.find('[data-slideshow-item].' + previousClass);
+          var $oldNext = findSafe($items, '[data-slideshow-item].' + nextClass, '[data-slideshow-items]');
+          var $oldPrevious = findSafe($items, '[data-slideshow-item].' + previousClass, '[data-slideshow-items]');
           $oldNext.removeClass(nextClass);
           $oldPrevious.removeClass(previousClass);
         }
 
         var $newNext = $current.next();
         if(!$newNext.length) {
-          $newNext = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:first');
+          $newNext = findItems().first();
         }
         $newNext.addClass(nextClass);
 
-        if(slideshowLength == 2) {
+        if(slideshowLength === 2) {
           $current.removeClass(otherClass);
           $newNext.addClass(otherClass);
           return;
@@ -152,7 +154,7 @@
 
         var $newPrevious = $current.prev();
         if(!$newPrevious.length) {
-          $newPrevious = $current.closest('[data-slideshow-items]').find('[data-slideshow-item]:last');
+          $newPrevious = findItems().last();
         }
         $newPrevious.addClass(previousClass);
       }
@@ -162,14 +164,17 @@
       }
 
       function refreshPager(target) {
-        $el.find('[data-pager]').removeClass(currentClass);
-        $el.find('[data-pager]').eq(target).addClass(currentClass);
+        findSafe($el, '[data-pager]', '[data-slideshow-items]')
+          .removeClass(currentClass)
+          .eq(target)
+          .addClass(currentClass)
+        ;
       }
 
       function adjustSize() {
-        $el.find('[data-image]').imagesReady(function() {
+        findSafe($items, '[data-image]', '[data-slideshow-items]').imagesReady(function() {
           var tallest = 0;
-          $el.find('[data-slideshow-item]').each(function() {
+          findItems().each(function() {
             var $item = $(this);
             if ($item.height() > tallest) {
               tallest = $item.height();
@@ -177,10 +182,32 @@
           });
 
           if (!noHeight) {
-            $el.find('[data-slideshow-items]').height(tallest);
+            $items.height(tallest);
           }
 
         });
+      }
+
+      // use this for supporting nested projector instances
+      function findSafe($element, selector, ignore) {
+        var $self = $element;
+        return $self.find(selector).filter(function() {
+          var $parents = $(this).parents();
+          var i;
+          for (i = 0; (i < $parents.length); i++) {
+            if ($parents[i] === $self[0]) {
+              return true;
+            }
+            if ($($parents[i]).is(ignore)) {
+              return false;
+            }
+          }
+        });
+      }
+
+      // shorthand for the most common `find` operation
+      function findItems() {
+        return findSafe($items, '[data-slideshow-item]', '[data-slideshow-items]');
       }
 
       adjustSize();

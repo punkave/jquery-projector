@@ -6,6 +6,8 @@
 
 Progressive enhancement makes `jquery-projector` very SEO-friendly. `jquery-projector` also copes intelligently with images of varying heights, imposing a consistent height on the slideshow so your page doesn't "jump." `jquery-projector` is tested and supported back to at least IE8.
 
+As of version 0.3.0, `jquery-projector` instances can be nested inside one another safely.
+
 ## How to Use
 
 ### Requirements
@@ -51,6 +53,8 @@ Looking for pagers instead of previous and next buttons? You can use the `[data-
   </ul>
 </div>
 ```
+
+Pagers must be outside of the `data-slideshow-items` element.
 
 ### Setting Up Your CSS
 
@@ -137,6 +141,8 @@ Note that this assumes you are using CSS to force a consistent width for all of 
 You can disable this autosizing behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height` attribute on the outer element of your slideshow (no value is needed).
 
 ## Changelog
+
+0.3.0: Projector instances can be nested inside each other! As a result, `data-pager`, `data-next`, and `data-previous` elements must be outside of the `data-slideshow-items` element. This is the reason for the 0.2 - 0.3 switch.
 
 0.2.5: added `otherClass` (`apos-other` by default) for slideshows of length 2.
 
