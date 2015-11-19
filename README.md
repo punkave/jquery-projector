@@ -112,9 +112,13 @@ $('.my-slideshow').projector({
   // the classname applied to the other item when the
   // slideshow is of length 2
   otherClass: 'apos-other',
+  // kills setTimeout interval when user clicks next/previous. Defaults to `false`
+  pauseOnClick: true,
   // turns off automatic height when set to `true` (see the Automatic Height section below).
   // defaults to `false`.
   noHeight: false,
+  // turns on a responsive height listener when set to `true`. Defaults to `false`
+  responsiveHeight: true,
   // turns off the next and previous classes, leaving only `apos-current`.
   // defaults to `false`.
   noNextAndPreviousClasses: false
@@ -138,9 +142,12 @@ This prevents the rest of the page below the slideshow from "jumping" as the sli
 
 Note that this assumes you are using CSS to force a consistent width for all of the images and allowing the height to scale in order to maintain the aspect ratio, with the optional use of `max-height` as well.
 
+You can set a responsive listener on your slideshow so that as you resize your browser window, the slideshow's height is adjusted as the aspect ratio of your image adjusts. To use this option, set the option `responsizeHeight` on your projector instance.
+
 You can disable this autosizing behavior by setting the `noHeight` option to `true`, or by setting the `data-no-height` attribute on the outer element of your slideshow (no value is needed).
 
 ## Changelog
+0.3.1: Projector now takes two additional options: `responsiveHeight` sets a listener on the window resize event and `pauseOnClick` pauses the slideshow when users click the next/previous buttons.
 
 0.3.0: Projector instances can be nested inside each other! As a result, `data-pager`, `data-next`, and `data-previous` elements must be outside of the `data-slideshow-items` element. This is the reason for the 0.2 - 0.3 switch.
 
