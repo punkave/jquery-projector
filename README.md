@@ -148,6 +148,8 @@ You can disable this autosizing behavior by setting the `noHeight` option to `tr
 
 ## Changelog
 
+0.3.3: oops, short lived bug in 0.3.2.
+
 0.3.2: Projector now waits until it is visible before attempting to adjust heights and start the slideshow. This addresses a bug where the slideshow's outer div had zero height if a slideshow in a hidden container later became visible.
 
 0.3.1: Projector now takes two additional options: `responsiveHeight` sets a listener on the window resize event and `pauseOnClick` pauses the slideshow when users click the next/previous buttons. 
